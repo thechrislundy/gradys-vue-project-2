@@ -5,10 +5,12 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <template>
   <header>
+    <h1>Grady Senior Project 2</h1>
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/array">Array</RouterLink>
       <RouterLink to="/counter">Counter</RouterLink>
+      <RouterLink to="/image">Image</RouterLink>
     </nav>
   </header>
 
