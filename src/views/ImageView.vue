@@ -1,8 +1,8 @@
 <template>
-  <VueTinySlider :options="options">
-    <div>Slide #1</div>
-    <div>Slide #2</div>
-    <div>Slide #3</div> </VueTinySlider
+  <VueTinySlider v-if="loaded" :options="options">
+    <div v-for="image in images">
+      <img :src="image.thumbnailUrl" />
+    </div> </VueTinySlider
   >{{ images }}
 </template>
 <script>
@@ -13,9 +13,10 @@ export default {
     return {
       images: [],
       options: {
-        items: 1,
+        items: 3,
         speed: 400,
       },
+      loaded: false,
     };
   },
   components: { VueTinySlider },
@@ -23,7 +24,11 @@ export default {
     fetchImages() {
       fetch("https://jsonplaceholder.typicode.com/photos")
         .then((response) => response.json())
-        .then((json) => (this.images = json));
+        .then((json) => {
+          this.images = json.slice(0, 10);
+
+          this.loaded = true;
+        });
     },
   },
   mounted() {
